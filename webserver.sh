@@ -10,6 +10,4 @@ cd /var/www/html
 
 git clone https://github.com/sreesysadm/carwebsite.git .
 
-service httpd start
-
 service httpd restart
