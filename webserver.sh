@@ -12,5 +12,5 @@ git clone https://github.com/sreesysadm/carwebsite.git .
 
 service httpd restart
 
-service httpd status Anil
+
 
