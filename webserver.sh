@@ -11,5 +11,6 @@ cd /var/www/html
 git clone https://github.com/sreesysadm/carwebsite.git .
 
 service httpd restart
-service httpd status
+
+service httpd status Anil
 
