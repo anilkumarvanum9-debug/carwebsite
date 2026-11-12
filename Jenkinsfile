@@ -19,18 +19,27 @@ pipeline {
       }
     }
 
-    stage('SonarQube Analysis') {
-      steps {
-        withSonarQubeEnv('SonarQube') {
-          sh '''
-            sonar-scanner \
-              -Dsonar.projectKey=digital-marketing \
-              -Dsonar.sources=. \
-              -Dsonar.exclusions=node_modules/**
-          '''
+    
+stage('SonarQube Analysis') {
+    steps {
+        script {
+            def scannerHome = tool(
+                name: 'SonarScanner',
+                type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+            )
+
+            withSonarQubeEnv('SonarQube') {
+                sh """
+                    ${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.projectKey=digital-marketing \
+                    -Dsonar.sources=. \
+                    -Dsonar.exclusions=node_modules/**
+                """
+            }
         }
-      }
     }
+}
+
 
     stage('OWASP Dependency Check') {
       steps {
